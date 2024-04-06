@@ -1,14 +1,13 @@
 import React from "react";
 import "./NotFoundPage.style.css";
 import { Link } from "react-router-dom";
-
-const logoUrl = process.env.PUBLIC_URL + "/assets/netflix-logo.svg";
+import netflixLogo from "./../../assets/netflix-Logo.svg";
 
 const NotFoundPage = () => {
   return (
     <div className="not-found-page">
       <img
-        src={logoUrl}
+        src={netflixLogo}
         alt="Netflix Logo"
         id="navbar-logo"
         style={{ width: "300px", maxHeight: "90px" }}
