@@ -24,7 +24,7 @@ const Banner = () => {
       className="banner"
     >
       <div className="text-white banner-text-area">
-        <h1>{mostPopularMovie.title}</h1>
+        <h1 className="banner-title">{mostPopularMovie.title}</h1>
         <p className="banner-overview">{mostPopularMovie.overview}</p>
       </div>
     </div>
