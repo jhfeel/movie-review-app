@@ -6,7 +6,7 @@ import "./Banner.style.css";
 
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
-  const mostPopularMovie = data?.results[8];
+  const mostPopularMovie = data?.results[0];
 
   if (isLoading) {
     return <Spinner animation="border" variant="danger" role="status" />;
