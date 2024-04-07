@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Outlet } from "react-router-dom";
 import "./AppLayout.style.css";
-import netflixLogo from "./../assets/netflix-Logo.svg";
+import netflixLogo from "./../assets/netflix-logo.svg";
 
 const AppLayout = () => {
   return (
@@ -21,7 +21,6 @@ const AppLayout = () => {
             <img
               src={netflixLogo}
               alt="Netflix Logo"
-              id="navbar-logo"
               style={{ width: "100px", maxHeight: "30px" }}
             />
           </Navbar.Brand>

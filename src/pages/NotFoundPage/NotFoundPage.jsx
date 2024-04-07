@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotFoundPage.style.css";
 import { Link } from "react-router-dom";
-import netflixLogo from "./../../assets/netflix-Logo.svg";
+import netflixLogo from "./../../assets/netflix-logo.svg";
 
 const NotFoundPage = () => {
   return (
@@ -9,7 +9,6 @@ const NotFoundPage = () => {
       <img
         src={netflixLogo}
         alt="Netflix Logo"
-        id="navbar-logo"
         style={{ width: "300px", maxHeight: "90px" }}
       />
       <div className="not-found-text">404</div>
