@@ -1,8 +1,8 @@
 import React from "react";
-import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import Alert from "react-bootstrap/Alert";
-import "./Banner.style.css";
 import Spinner from "react-bootstrap/Spinner";
+import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
+import "./Banner.style.css";
 
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();

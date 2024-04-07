@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotFoundPage.style.css";
 import { Link } from "react-router-dom";
-import netflixLogo from "./../../assets/netflix-logo.svg";
+import netflixLogo from "./../../assets/netflix-Logo.svg";
 
 const NotFoundPage = () => {
   return (
