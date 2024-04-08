@@ -8,7 +8,7 @@ const MovieSlider = ({ title, movies, responsive }) => {
   console.log(movies);
   return (
     <div>
-      <h3>{title}</h3>
+      <h3 className="slider-title">{title}</h3>
       <Carousel
         infinite={true}
         centerMode={true}
@@ -16,6 +16,7 @@ const MovieSlider = ({ title, movies, responsive }) => {
         containerClass="carousel-container"
         responsive={responsive}
         removeArrowOnDeviceType={["mobile"]}
+        focusOnSelect={true}
       >
         {movies.map((movie, index) => (
           <MovieCard movie={movie} key={index} />

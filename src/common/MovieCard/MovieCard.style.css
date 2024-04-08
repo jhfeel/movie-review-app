@@ -23,19 +23,19 @@
 }
 @media (max-width: 650px) {
   .movie-card {
-    transform: scale(0.65);
+    transform: scale(0.7);
   }
   .movie-card:hover {
-    transform: scale(0.78) translateZ(20px);
+    transform: scale(0.84) translateZ(20px);
     z-index: 2;
   }
 }
 @media (max-width: 350px) {
   .movie-card {
-    transform: scale(0.35);
+    transform: scale(0.5);
   }
   .movie-card:hover {
-    transform: scale(0.42) translateZ(20px);
+    transform: scale(0.6) translateZ(20px);
     z-index: 2;
   }
 }
