@@ -1,13 +1,13 @@
-import React from "react";
+import { React } from "react";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import "react-multi-carousel/lib/styles.css";
 import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../../constants/responsive";
-import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
+import { useUpcomingMoviesQuery } from "../../../../hooks/useUpcomingMovies";
 
-const PopularMovieSlide = () => {
-  const { data, isLoading, isError, error } = usePopularMoviesQuery();
+const TopRatedMovieSlide = () => {
+  const { data, isLoading, isError, error } = useUpcomingMoviesQuery();
 
   if (isLoading) {
     return <Spinner animation="border" variant="danger" role="status" />;
@@ -18,12 +18,12 @@ const PopularMovieSlide = () => {
   return (
     <div>
       <MovieSlider
-        title="Top Popular Movies"
-        movies={data?.results}
+        title="Upcoming Movies"
+        movies={data.results}
         responsive={responsive}
       />
     </div>
   );
 };
 
-export default PopularMovieSlide;
+export default TopRatedMovieSlide;
