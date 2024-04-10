@@ -5,7 +5,6 @@ import MovieCard from "../MovieCard/MovieCard";
 import "./MovieSlider.style.css";
 
 const MovieSlider = ({ title, movies, responsive }) => {
-  console.log(movies);
   return (
     <div>
       <h3 className="slider-title">{title}</h3>

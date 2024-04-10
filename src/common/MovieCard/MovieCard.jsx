@@ -22,7 +22,7 @@ const MovieCard = ({ movie }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/${movie.backdrop_path})`,
+        backgroundImage: `url(https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/${movie.poster_path})`,
       }}
       className="movie-card"
     >

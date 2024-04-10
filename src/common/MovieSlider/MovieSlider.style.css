@@ -14,6 +14,44 @@
   }
 }
 
+@media (max-width: 800px) {
+  .carousel-container {
+  }
+}
+
+@media (max-width: 650px) {
+  .carousel-container {
+    padding-left: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    padding-left: 400px;
+  }
+}
+
+@media (max-width: 390px) {
+  .carousel-container {
+    padding-left: 350px;
+  }
+}
+
+@media (max-width: 350px) {
+  .carousel-container {
+    padding-left: 100px;
+  }
+}
+@media (max-width: 330px) {
+  .carousel-container {
+    padding-left: 250px;
+  }
+}
+
 .slider-title {
   padding-left: 10px;
+}
+
+.p-1 {
+  overflow: visible;
 }
