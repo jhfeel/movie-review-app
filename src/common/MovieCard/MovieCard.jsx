@@ -8,8 +8,7 @@ const MovieCard = ({ movie }) => {
     Math.round(movie.vote_average * 10) / 10
   ).toFixed(1);
   const { data: genreData } = useMovieGenreQuery();
-  console.log(genreData, "genreData");
-  console.log(movie.genre_ids, "genrid");
+
   const showGenre = (genreIdList) => {
     if (!genreData) return [];
     const genreNameList = genreIdList.map((id) => {
@@ -32,7 +31,11 @@ const MovieCard = ({ movie }) => {
         <div className="movie-info">
           <div className="genre-list">
             {showGenre(movie.genre_ids)
-              .map((id) => <Badge bg="danger">{id}</Badge>)
+              .map((id) => (
+                <Badge bg="danger" key={id}>
+                  {id}
+                </Badge>
+              ))
               .slice(0, 3)}
           </div>
           <div>⭐{voteAverageFormatted}</div>

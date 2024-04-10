@@ -1,15 +1,24 @@
-import React from "react";
-import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
+import React, { useState } from "react";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
+import ReactPaginate from "react-paginate";
 import { useSearchParams } from "react-router-dom";
-import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import MovieCard from "../../common/MovieCard/MovieCard";
+import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
+import "./MoviePage.style.css";
 
 const MoviePage = () => {
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
+  const [page, setPage] = useState(1);
   const keyword = query.get("q");
 
-  const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword });
-  console.log("dad", data);
+  const { data, isLoading, isError, error } = useSearchMovieQuery({
+    keyword,
+    page,
+  });
+
+  const handlePageChange = ({ selected }) => {
+    setPage(selected + 1);
+  };
 
   if (isLoading) {
     return <Spinner animation="border" variant="danger" role="status" />;
@@ -18,17 +27,48 @@ const MoviePage = () => {
     return <Alert variant="danger">{error.message}</Alert>;
   }
   return (
-    <div>
+    <div style={{ padding: "30px" }}>
       <Container>
         <Row>
           <Col lg={12} xs={12}>
             <Row>
-              {data?.map((movie, index) => (
-                <Col key={index} lg={4} md={6} xs={6}>
+              {data?.results.map((movie, index) => (
+                <Col
+                  key={index}
+                  lg={4}
+                  md={6}
+                  xs={6}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
                   <MovieCard movie={movie} />
                 </Col>
               ))}
             </Row>
+            <div>
+              <ReactPaginate
+                previousLabel="<"
+                nextLabel=">"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakLabel="..."
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                pageCount={data?.total_pages}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageChange}
+                containerClassName="pagination"
+                activeClassName="active"
+                forcePage={page - 1}
+              />
+            </div>
           </Col>
         </Row>
       </Container>
