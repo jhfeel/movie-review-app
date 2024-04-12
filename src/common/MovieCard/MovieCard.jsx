@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Badge from "react-bootstrap/Badge";
-import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import "./MovieCard.style.css";
 
 const MovieCard = ({ movie }) => {
   const voteAverageFormatted = (
@@ -22,7 +22,7 @@ const MovieCard = ({ movie }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/${movie.poster_path})`,
+        backgroundImage: `url(https://media.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path})`,
       }}
       className="movie-card"
     >
@@ -31,9 +31,9 @@ const MovieCard = ({ movie }) => {
         <div className="movie-info">
           <div className="genre-list">
             {showGenre(movie.genre_ids)
-              .map((id) => (
-                <Badge bg="danger" key={id}>
-                  {id}
+              .map((genre) => (
+                <Badge bg="danger" key={genre} className="genre">
+                  {genre}
                 </Badge>
               ))
               .slice(0, 3)}

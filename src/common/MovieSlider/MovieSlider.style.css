@@ -1,57 +1,23 @@
 .carousel-container {
   overflow: hidden;
-  height: 220px;
+  height: 360px;
   margin-bottom: 50px;
-}
-@media (max-width: 720px) {
-  .carousel-container {
-    height: 170px;
-  }
-}
-@media (max-width: 480px) {
-  .carousel-container {
-    height: 150px;
-  }
 }
 
 @media (max-width: 800px) {
   .carousel-container {
+    height: 330px;
   }
 }
 
 @media (max-width: 650px) {
   .carousel-container {
-    padding-left: 130px;
+    height: 250px;
   }
 }
 
 @media (max-width: 480px) {
   .carousel-container {
-    padding-left: 400px;
+    height: 300px;
   }
-}
-
-@media (max-width: 390px) {
-  .carousel-container {
-    padding-left: 350px;
-  }
-}
-
-@media (max-width: 350px) {
-  .carousel-container {
-    padding-left: 100px;
-  }
-}
-@media (max-width: 330px) {
-  .carousel-container {
-    padding-left: 250px;
-  }
-}
-
-.slider-title {
-  padding-left: 10px;
-}
-
-.p-1 {
-  overflow: visible;
 }

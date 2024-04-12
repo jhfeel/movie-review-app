@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../common/MovieCard/MovieCard";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import "./MoviePage.style.css";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const MoviePage = () => {
   const [query] = useSearchParams();
@@ -29,6 +30,18 @@ const MoviePage = () => {
   return (
     <div style={{ padding: "30px" }}>
       <Container>
+        <Row>
+          <Dropdown onSelect={() => {}}>
+            <Dropdown.Toggle variant="danger" id="dropdown-basic">
+              정렬
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item>인기순</Dropdown.Item>
+              <Dropdown.Item>평점순</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Row>
         <Row>
           <Col lg={12} xs={12}>
             <Row>
