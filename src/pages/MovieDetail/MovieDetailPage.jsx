@@ -4,9 +4,11 @@ import {
   useMovieCreditsQuery,
   useMovieDetailsQuery,
 } from "../../hooks/useMovieDetails";
+import { useMovieRecommendationsQuery } from "../../hooks/useMovieRecommendations";
+import MovieCard from "./../../common/MovieCard/MovieCard";
+import { useMovieReviewsQuery } from "./../../hooks/useMovieReviews";
 import "./MovieDetailPage.style.css";
 import MovieReview from "./components/MovieReview/MovieReview";
-import { useMovieReviewsQuery } from "./../../hooks/useMovieReviews";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -14,17 +16,19 @@ const MovieDetailPage = () => {
   const { data, isLoading, isError, error } = useMovieDetailsQuery({
     movie_id: id,
   });
-  console.log("detail", data);
 
   const { data: credits } = useMovieCreditsQuery({ movie_id: id });
   const { data: reviews } = useMovieReviewsQuery({ movie_id: id });
-  console.log("rr", reviews);
+
+  const { data: recommendations } = useMovieRecommendationsQuery({
+    movie_id: id,
+  });
+  console.log("rec", recommendations);
 
   const directorList = credits?.crew.filter(
     (person) => person.job === "Director"
   );
   const mainActorList = credits?.cast.slice(0, 4);
-  console.log(directorList, mainActorList);
 
   const voteAverageFormatted = (
     Math.round(data?.vote_average * 10) / 10
@@ -62,6 +66,12 @@ const MovieDetailPage = () => {
       <div>
         {reviews?.map((review) => (
           <MovieReview key={review.id} review={review} />
+        ))}
+      </div>
+      <div>
+        <div>Recommendations</div>
+        {recommendations?.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>
