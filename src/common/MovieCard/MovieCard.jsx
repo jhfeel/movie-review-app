@@ -34,13 +34,11 @@ const MovieCard = ({ movie }) => {
         <h4>{movie.title}</h4>
         <div className="movie-info">
           <div className="genre-list">
-            {showGenre(movie.genre_ids)
-              .map((genre) => (
-                <Badge bg="danger" key={genre} className="genre">
-                  {genre}
-                </Badge>
-              ))
-              .slice(0, 3)}
+            {showGenre(movie.genre_ids).map((genre) => (
+              <Badge bg="danger" key={genre} className="genre">
+                {genre}
+              </Badge>
+            ))}
           </div>
           <div>⭐{voteAverageFormatted}</div>
         </div>

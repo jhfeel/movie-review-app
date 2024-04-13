@@ -1,25 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
 import ReactPaginate from "react-paginate";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import MovieCard from "../../common/MovieCard/MovieCard";
+import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import "./MoviePage.style.css";
-import Dropdown from "react-bootstrap/Dropdown";
+
+const sortList = [
+  { sort: "popularity.desc", name: "by Popularity" },
+  { sort: "vote_average.desc", name: "by Rating" },
+  { sort: "primary_release_date.desc", name: "by Newest" },
+];
 
 const MoviePage = () => {
   const [query] = useSearchParams();
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState(null);
+  const [genreId, setGenreId] = useState(null);
   const keyword = query.get("q");
+  const navigate = useNavigate();
 
-  const { data, isLoading, isError, error } = useSearchMovieQuery({
-    keyword,
-    page,
-  });
+  const { data: genreList } = useMovieGenreQuery();
+  const genre = genreList?.find((item) => item.id === Number(genreId))?.name;
+  const sortName = sortList?.find((item) => item.sort === sort)?.name;
+  console.log("ggl", genreList, genre);
 
   const handlePageChange = ({ selected }) => {
     setPage(selected + 1);
   };
+
+  const { data, isLoading, isError, error } = useSearchMovieQuery({
+    sort,
+    genreId,
+    keyword,
+    page,
+  });
 
   if (isLoading) {
     return <Spinner animation="border" variant="danger" role="status" />;
@@ -32,22 +49,48 @@ const MoviePage = () => {
       <Container>
         <Row>
           <Col className="dropdown-container">
-            <Dropdown onSelect={() => {}}>
-              <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                정렬
+            <Dropdown
+              onSelect={(eventKey) => {
+                navigate("/movies");
+                setSort(eventKey);
+              }}
+            >
+              <Dropdown.Toggle
+                variant={sort ? "danger" : "outline-danger"}
+                id="dropdown-basic"
+              >
+                {sort ? "Sort: " + sortName : "Sort"}
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item>인기순</Dropdown.Item>
-                <Dropdown.Item>평점순</Dropdown.Item>
+                <Dropdown.Item eventKey={"popularity.desc"}>
+                  by Popularity
+                </Dropdown.Item>
+                <Dropdown.Item eventKey={"vote_average.desc"}>
+                  by Rating
+                </Dropdown.Item>
+                <Dropdown.Item eventKey={"primary_release_date.desc"}>
+                  by Newest
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Dropdown onSelect={() => {}}>
-              <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                장르별
+            <Dropdown
+              onSelect={(eventKey) => {
+                navigate("/movies");
+                setGenreId(eventKey);
+              }}
+            >
+              <Dropdown.Toggle
+                variant={genreId ? "danger" : "outline-danger"}
+                id="dropdown-basic"
+              >
+                {genreId ? "Genre: " + genre : "Genre"}
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item>1</Dropdown.Item>
-                <Dropdown.Item>2</Dropdown.Item>
+                {genreList?.map((item) => (
+                  <Dropdown.Item key={item.id} eventKey={item.id}>
+                    {item.name}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </Col>
