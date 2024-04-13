@@ -104,7 +104,10 @@ const MovieDetailPage = () => {
               ⌛ Runtime
             </Badge>
             {"  "}
-            {Math.floor(data?.runtime / 60)}:{data?.runtime % 60}
+            {Math.floor(data?.runtime / 60)}:
+            {data?.runtime % 60 >= 10
+              ? data?.runtime % 60
+              : "0" + (data?.runtime % 60)}
           </div>
           <div>
             <Badge bg="secondary" className="badge-title">

@@ -117,11 +117,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.loading-spinner {
-  width: 100px;
-  height: 100px;
-  position: fixed;
-  top: 45vh;
-  left: 45vw;
-}
