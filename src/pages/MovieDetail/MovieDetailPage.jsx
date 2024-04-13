@@ -1,19 +1,19 @@
 import React, { useState } from "react";
+import { Alert, Badge, Col, Container, Row, Spinner } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router-dom";
+import YouTube from "react-youtube";
 import {
   useMovieCreditsQuery,
   useMovieDetailsQuery,
 } from "../../hooks/useMovieDetails";
 import { useMovieRecommendationsQuery } from "../../hooks/useMovieRecommendations";
+import { useMovieVideoQuery } from "../../hooks/useMovieVideo";
 import MovieCard from "./../../common/MovieCard/MovieCard";
 import { useMovieReviewsQuery } from "./../../hooks/useMovieReviews";
 import "./MovieDetailPage.style.css";
 import MovieReview from "./components/MovieReview/MovieReview";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { useMovieVideoQuery } from "../../hooks/useMovieVideo";
-import YouTube from "react-youtube";
-import { Alert, Badge, Col, Container, Row, Spinner } from "react-bootstrap";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -40,7 +40,6 @@ const MovieDetailPage = () => {
     movie_id: id,
   });
   const { data: trailer } = useMovieVideoQuery({ movie_id: id });
-  console.log("tt", trailer);
   const directorList = credits?.crew.filter(
     (person) => person.job === "Director"
   );
@@ -58,7 +57,14 @@ const MovieDetailPage = () => {
   };
 
   if (isLoading) {
-    return <Spinner animation="border" variant="danger" role="status" />;
+    return (
+      <Spinner
+        animation="border"
+        variant="danger"
+        role="status"
+        className="loading-spinner"
+      />
+    );
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
@@ -111,13 +117,15 @@ const MovieDetailPage = () => {
             <Badge bg="secondary" className="badge-title">
               💰 Budget
             </Badge>
-            {"  "}${formatCurrency(data?.budget)}
+            {"  "}
+            {data?.budget !== 0 ? "$" + formatCurrency(data?.budget) : "???"}
           </div>
           <div>
             <Badge bg="secondary" className="badge-title">
               💸 Revenue
             </Badge>
-            {"  "}${formatCurrency(data?.revenue)}
+            {"  "}
+            {data?.revenue !== 0 ? "$" + formatCurrency(data?.revenue) : "???"}
           </div>
           <div className="overview-box">{data?.overview}</div>
         </Col>

@@ -9,6 +9,6 @@ export const useMovieRecommendationsQuery = ({ movie_id }) => {
   return useQuery({
     queryKey: ["movie-recommendations", { movie_id }],
     queryFn: () => fetchMovieRecommendations({ movie_id }),
-    select: (result) => result.data.results.slice(0, 8),
+    select: (result) => result.data.results.slice(0, 12),
   });
 };
