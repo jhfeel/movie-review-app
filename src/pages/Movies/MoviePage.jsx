@@ -31,16 +31,26 @@ const MoviePage = () => {
     <div style={{ padding: "30px" }}>
       <Container>
         <Row>
-          <Dropdown onSelect={() => {}}>
-            <Dropdown.Toggle variant="danger" id="dropdown-basic">
-              정렬
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item>인기순</Dropdown.Item>
-              <Dropdown.Item>평점순</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <Col className="dropdown-container">
+            <Dropdown onSelect={() => {}}>
+              <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                정렬
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item>인기순</Dropdown.Item>
+                <Dropdown.Item>평점순</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown onSelect={() => {}}>
+              <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                장르별
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item>1</Dropdown.Item>
+                <Dropdown.Item>2</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
         </Row>
         <Row>
           <Col lg={12} xs={12}>
@@ -48,9 +58,9 @@ const MoviePage = () => {
               {data?.results.map((movie, index) => (
                 <Col
                   key={index}
-                  lg={4}
+                  lg={3}
                   md={6}
-                  xs={6}
+                  xs={12}
                   style={{
                     display: "flex",
                     justifyContent: "center",

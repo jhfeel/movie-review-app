@@ -14,7 +14,6 @@ const MovieSlider = ({ title, movies, responsive }) => {
         itemClass="movie-slider p-1"
         containerClass="carousel-container"
         responsive={responsive}
-        removeArrowOnDeviceType={["mobile"]}
         focusOnSelect={true}
       >
         {movies.map((movie, index) => (
