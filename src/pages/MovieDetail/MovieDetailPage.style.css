@@ -1,0 +1,33 @@
+.movie-detail-poster {
+  height: 300px;
+  width: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  position: relative;
+  top: 10px;
+  left: 0;
+  right: 0;
+}
+
+.movie-detail-background {
+  height: 70vh;
+  width: 100vw;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.movie-detail-background:before {
+  height: 70vh;
+  width: 100%;
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  position: absolute;
+  left: 0;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
