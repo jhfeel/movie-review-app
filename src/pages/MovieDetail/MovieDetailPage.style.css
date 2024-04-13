@@ -25,9 +25,3 @@
   position: absolute;
   left: 0;
 }
-
-.movie-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
